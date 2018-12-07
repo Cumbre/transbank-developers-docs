@@ -226,8 +226,8 @@ cart.add(Transbank::Onepay::Item.new(amount: 15000,
 from transbank.onepay.cart import ShoppingCart, Item
 
 cart = ShoppingCart()
-cart.add(Item(description="Zapatos", 
-              quantity=1, amount=15000, 
+cart.add(Item(description="Zapatos",
+              quantity=1, amount=15000,
               additional_data=None, expire=None))
 ```
 
@@ -713,12 +713,12 @@ backend, frontend-web (soportando canales WEB y MOBILE) y las dos apps móviles 
 
 Las modalidades vistas hasta ahora contemplan que tu aplicación es usada
 directamente por el comprador (tarjetahabiente), quien compra directamente desde
-tu app móvil o desde tu web (y es dirigido a la app Onepay de la manera más 
+tu app móvil o desde tu web (y es dirigido a la app Onepay de la manera más
 apropiada).
 
 Onepay ofrece la flexibilidad para ser usado también en la modalidad "cortafila"
-en tus tiendas físicas. Allí un vendedor usando por ejemplo un tablet puede 
-acercarse a los compradores y procesar rápidamente su compra usando Onepay. 
+en tus tiendas físicas. Allí un vendedor usando por ejemplo un tablet puede
+acercarse a los compradores y procesar rápidamente su compra usando Onepay.
 
 Para hacer funcionar este proceso la integración es un poco diferente a las
 vistas anteriormente. Suponiendo que la app para el vendedor es una app móvil,
@@ -726,8 +726,8 @@ ahora verás los pasos necesarios para realizar la integración.
 
 ### 1. Tu app móvil inicia el flujo.
 
-    Para comenzar, la app móvil del vendedor será la que inicie la transacción.
-    Esta app debe invocar a tu backend (por ejemplo a través de un API REST).
+Para comenzar, la app móvil del vendedor será la que inicie la transacción.
+Esta app debe invocar a tu backend (por ejemplo a través de un API REST).
 
 ### 2. Tu backend crea la transacción Onepay
 
@@ -781,7 +781,7 @@ response = Transaction.create(cart, Channel.MOBILE)
 
 A partir de la información entregada por la app móvil del vendedor (información que debe estar autenticada y autorizada), deberás crear una transacción usando `MOBILE` como channel. Ten en cuenta que el callback que indiques será invocado en el dispositivo móvil del comprador y no del vendedor (como verás en el paso 4).
 
-Luego en la respuesta que le enviarás a la app móvil del vendedor debes incluir la respuesta de la transacción Onepay. 
+Luego en la respuesta que le enviarás a la app móvil del vendedor debes incluir la respuesta de la transacción Onepay.
 
 ### 3. Dibujar el código QR en la app móvil.
 
@@ -791,7 +791,7 @@ Te recomendamos también implementar un timeout y/o una interfaz para que el ven
 
 ### 4. Retomar el control en el navegador móvil del comprador.
 
-Cuando el comprador escanee el QR con su app Onepay, no tendrás manera de saber el progreso de la operación. Pero cuando el comprador termine (exitosamente o con error), tu callback será invocado **en el navegador móvil del comprador**. 
+Cuando el comprador escanee el QR con su app Onepay, no tendrás manera de saber el progreso de la operación. Pero cuando el comprador termine (exitosamente o con error), tu callback será invocado **en el navegador móvil del comprador**.
 
 <div class="language-simple" data-multiple-language></div>
 
@@ -872,7 +872,7 @@ require 'transbank/sdk'
 
 if params["status"] == "PRE_AUTHORIZED"
   response = Transbank::Onepay::Transaction.commit(
-    occ: params["occ"], 
+    occ: params["occ"],
     external_unique_number: params["external_unique_number"]
   )
   # Procesar response
@@ -1002,7 +1002,7 @@ options = { api_key: 'api-key-entregado-por-transbank',
 ```python
 from transbank.onepay import Options
 
-options = Options("api-key-entregado-por-transbank", 
+options = Options("api-key-entregado-por-transbank",
                   "secreto-entregado-por-transbank")
 ```
 
